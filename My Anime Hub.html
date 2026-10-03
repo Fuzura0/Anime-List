@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My Anime Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef0ff;--card:#fff;--tx:#1b1f4b;--mu:#6b70a3;--line:#dfe2fb;--in:#f4f5ff;--pri:#6366f1;--grad:linear-gradient(90deg,#5b7cfa,#a77bf3);--sky:linear-gradient(135deg,#3f5ae0,#a65cf0 55%,#ff9bb8)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1236;--card:#171c4d;--tx:#eef0ff;--mu:#9aa0d6;--line:#2a3173;--in:#121642}}
+:root[data-theme="dark"]{--bg:#0e1236;--card:#171c4d;--tx:#eef0ff;--mu:#9aa0d6;--line:#2a3173;--in:#121642}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 15px/1.5 "Plus Jakarta Sans",system-ui,sans-serif}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+.auth{min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--sky);position:relative}
+.auth .tag{position:absolute;top:28px;left:32px;color:#fff;font:500 26px/1.2 Caveat,cursive;transform:rotate(-6deg)}
+.box{width:100%;max-width:400px;background:var(--card);border-radius:28px;padding:32px;box-shadow:0 20px 60px #1b1f4b55;text-align:center}
+.logo{font-weight:800;font-size:20px}.logo b{color:var(--pri)}
+.box h2{margin:12px 0 4px;font-size:26px}.box p{margin:0 0 18px;color:var(--mu)}
+.box input{width:100%;margin-bottom:12px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--in)}
+.btn{width:100%;padding:14px;border:0;border-radius:99px;background:var(--grad);color:#fff;font-weight:600}
+.err{color:#e5484d;min-height:20px;margin:0 0 8px!important;font-size:13px}
+.sw{margin-top:14px;font-size:13px;color:var(--mu)}.sw a{color:var(--pri);font-weight:600;cursor:pointer}
+.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.side{padding:20px 14px;border-right:1px solid var(--line);position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px}
+.side .logo{padding:0 10px 18px}
+.nv{display:flex;align-items:center;gap:12px;padding:12px 14px;border:0;border-radius:14px;background:none;text-align:left;color:var(--mu);font-weight:600}
+.nv.act{background:var(--grad);color:#fff}
+main{padding:20px 28px 40px;min-width:0}
+.top{display:flex;gap:12px;align-items:center;margin-bottom:20px}
+.top input{flex:1;padding:12px 18px;border:1px solid var(--line);border-radius:99px;background:var(--card)}
+.ic{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card)}
+.av{width:42px;height:42px;border-radius:50%;background:var(--sky);color:#fff;display:grid;place-items:center;font-weight:800}
+.hero{background:var(--sky);color:#fff;border-radius:24px;padding:36px 32px}
+.hero h1{margin:2px 0 6px;font-size:36px}.hero p{margin:0;opacity:.9}
+h3{margin:26px 0 12px;font-size:18px}
+.pin{display:flex;gap:18px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px;flex-wrap:wrap}
+.pin .po{width:110px;height:150px;border-radius:14px;flex:none}
+.pin .in{flex:1;min-width:200px}.pin h4{margin:0 0 4px;font-size:18px}.pin small{color:var(--mu)}
+.chip{display:inline-block;padding:3px 12px;margin:8px 6px 0 0;border-radius:99px;background:var(--in);border:1px solid var(--line);font-size:12px;color:var(--pri)}
+.row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.row .btn{width:auto;padding:10px 22px}
+.ghost{padding:10px 22px;border-radius:99px;border:1px solid var(--line);background:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.po{height:170px;position:relative;display:grid;place-items:center;color:#ffffffcc;font-size:56px;font-weight:800}
+.pin .po{font-size:44px}
+.bd{position:absolute;bottom:8px;right:8px;padding:2px 10px;border-radius:99px;font-size:11px;font-weight:600;color:#fff;background:#6366f1}
+.bd.C{background:#22a06b}.bd.P{background:#f08a24}
+.ci{padding:10px 12px 12px}.ci h4{margin:0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ci small{color:var(--mu)}
+.pb{height:5px;border-radius:9px;background:var(--line);margin:6px 0 10px}.pb i{display:block;height:100%;border-radius:9px;background:var(--grad)}
+.ac{display:flex;gap:6px}.ac button{flex:1;padding:6px;border:1px solid var(--line);border-radius:10px;background:none;font-size:13px}
+.ac button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.tabs{display:flex;gap:8px;margin-bottom:16px;overflow-x:auto}
+.tabs button{padding:7px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);white-space:nowrap}
+.tabs button.act{background:var(--grad);color:#fff;border-color:transparent}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.stats div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.stats b{display:block;font-size:26px}.stats span{color:var(--mu);font-size:13px}
+.empty{padding:40px 10px;text-align:center;color:var(--mu)}
+.bot{display:none}
+@media(max-width:760px){
+.app{grid-template-columns:1fr}.side{display:none}main{padding:14px 14px 90px}
+.hero{padding:24px 20px}.hero h1{font-size:28px}
+.bot{display:flex;position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+.bot .nv{flex:1;flex-direction:column;gap:2px;padding:6px;font-size:11px;text-align:center;border-radius:12px}
+.auth .tag{font-size:20px;left:20px}
+}
+</style>
+</head>
+<body>
+<section class="auth" id="auth">
+  <div class="tag">Same sky,<br>different stories,<br>all anime.</div>
+  <form class="box" id="af" onsubmit="return false">
+    <div class="logo">🐱 My Anime <b>Hub</b></div>
+    <h2 id="at">Welcome back!</h2>
+    <p id="as">Login to continue your anime journey.</p>
+    <input id="u" placeholder="Email or username" autocomplete="username">
+    <input id="e" placeholder="Email" type="email" hidden>
+    <input id="p" placeholder="Password" type="password" autocomplete="current-password">
+    <input id="p2" placeholder="Confirm password" type="password" hidden>
+    <p class="err" id="er"></p>
+    <button class="btn" id="ab" type="submit">Login</button>
+    <div class="sw" id="sw"></div>
+  </form>
+</section>
+
+<div class="app" id="app" hidden>
+  <aside class="side">
+    <div class="logo">🐱 My Anime <b>Hub</b></div>
+    <button class="nv" data-v="dash">🏠 Dashboard</button>
+    <button class="nv" data-v="list">📋 My List</button>
+    <button class="nv" data-v="favs">♥ Favorites</button>
+    <button class="nv" data-v="prof">👤 Profile</button>
+  </aside>
+  <main>
+    <div class="top">
+      <input id="q" type="search" placeholder="Search anime..." aria-label="Search anime">
+      <button class="ic" id="th" aria-label="Ganti tema">🌓</button>
+      <div class="av" id="av"></div>
+    </div>
+    <div id="view"></div>
+  </main>
+  <nav class="bot">
+    <button class="nv" data-v="dash">🏠<span>Home</span></button>
+    <button class="nv" data-v="list">📋<span>My List</span></button>
+    <button class="nv" data-v="favs">♥<span>Favorites</span></button>
+    <button class="nv" data-v="prof">👤<span>Profile</span></button>
+  </nav>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+const D=[
+{id:1,t:"Frieren: Beyond Journey's End",ep:12,tot:28,st:"Watching",sc:9.3,y:2023,fav:1,pin:1,gen:["Adventure","Fantasy","Drama"],d:"After the great demon king is defeated, an elven mage named Frieren embarks on a new journey, reflecting on the meaning of time and human connections.",g:"linear-gradient(135deg,#b7c4ff,#7f8cf2)"},
+{id:2,t:"Solo Leveling",ep:7,tot:12,st:"Watching",sc:8.4,y:2024,fav:0,pin:0,g:"linear-gradient(135deg,#243b7a,#6a4cd8)"},
+{id:3,t:"Demon Slayer",ep:26,tot:26,st:"Completed",sc:8.7,y:2019,fav:1,pin:0,g:"linear-gradient(135deg,#1f8a70,#0f5132)"},
+{id:4,t:"One Piece",ep:0,tot:1100,st:"Plan to Watch",sc:9.1,y:1999,fav:1,pin:0,g:"linear-gradient(135deg,#ffb347,#ff6a5c)"},
+{id:5,t:"Jujutsu Kaisen",ep:8,tot:24,st:"Watching",sc:8.3,y:2020,fav:1,pin:0,g:"linear-gradient(135deg,#d8434f,#6b1b3a)"},
+{id:6,t:"Naruto",ep:8,tot:220,st:"Watching",sc:8.3,y:2002,fav:1,pin:0,g:"linear-gradient(135deg,#ffa94d,#e8590c)"}];
+let S={user:null,theme:"auto",data:null},view="dash",tab="All",q="",reg=false;
+try{Object.assign(S,JSON.parse(localStorage.getItem("mah")||"{}"))}catch(e){}
+S.data=S.data||D;
+const save=()=>{try{localStorage.setItem("mah",JSON.stringify(S))}catch(e){}};
+function applyTheme(){const r=document.documentElement;S.theme==="auto"?r.removeAttribute("data-theme"):r.setAttribute("data-theme",S.theme)}
+const card=a=>`<div class="card"><div class="po" style="background:${a.g}">${a.t[0]}<span class="bd ${a.st[0]}">${a.st}</span></div><div class="ci"><h4>${a.t}</h4><small>Ep ${a.ep} / ${a.tot}</small><div class="pb"><i style="width:${a.ep/a.tot*100}%"></i></div><div class="ac"><button onclick="up(${a.id})" aria-label="Tambah episode">+1 Ep</button><button class="${a.fav?"on":""}" onclick="tg(${a.id},'fav')" aria-label="Favorit">♥</button><button class="${a.pin?"on":""}" onclick="tg(${a.id},'pin')" aria-label="Pin">★</button></div></div></div>`;
+function up(id){const a=S.data.find(x=>x.id==id);if(a.ep<a.tot)a.ep++;if(a.ep>=a.tot)a.st="Completed";else if(a.st=="Plan to Watch")a.st="Watching";save();render()}
+function tg(id,k){S.data.forEach(a=>{if(a.id==id)a[k]=a[k]?0:1;else if(k=="pin"&&a.pin&&S.data.find(x=>x.id==id&&!x.pin))a.pin=0});save();render()}
+const grid=l=>l.length?`<div class="grid">${l.map(card).join("")}</div>`:`<div class="empty">Belum ada anime di sini. Coba ubah pencarian atau filter.</div>`;
+function render(){
+  $("#auth").hidden=!!S.user;$("#app").hidden=!S.user;
+  if(!S.user)return;
+  $("#av").textContent=S.user[0].toUpperCase();
+  document.querySelectorAll("[data-v]").forEach(b=>b.classList.toggle("act",b.dataset.v==view));
+  const L=S.data.filter(a=>a.t.toLowerCase().includes(q));let h="";
+  if(view=="dash"){
+    const p=S.data.find(a=>a.pin);
+    h=`<div class="hero"><small>Welcome back,</small><h1>${esc(S.user)} ✦</h1><p>Keep watching, keep enjoying your anime journey!</p></div>`;
+    if(p)h+=`<h3>★ Pinned Favorite</h3><div class="pin"><div class="po" style="background:${p.g}">${p.t[0]}</div><div class="in"><h4>${p.t}</h4><small>⭐ ${p.sc} · ${p.y}</small><p>${p.d||""}</p>${(p.gen||[]).map(g=>`<span class="chip">${g}</span>`).join("")}<div class="row"><button class="btn" onclick="up(${p.id})">▶ Continue Watching</button><button class="ghost" onclick="tg(${p.id},'pin')">Unpin</button></div></div></div>`;
+    h+=`<h3>My List</h3>`+grid(L.slice(0,5));
+  }else if(view=="list"){
+    h=`<div class="tabs">${["All","Watching","Completed","Plan to Watch"].map(t=>`<button class="${t==tab?"act":""}" onclick="tab='${t}';render()">${t}</button>`).join("")}</div>`+grid(L.filter(a=>tab=="All"||a.st==tab));
+  }else if(view=="favs"){
+    h=`<h3 style="margin-top:0">Favorites</h3>`+grid(L.filter(a=>a.fav));
+  }else{
+    const n=S.data,c=n.filter(a=>a.st=="Completed").length;
+    h=`<h3 style="margin-top:0">${esc(S.user)}</h3><div class="stats"><div><b>${n.length}</b><span>Anime list</span></div><div><b>${n.filter(a=>a.fav).length}</b><span>Favorites</span></div><div><b>${c}</b><span>Completed</span></div></div><h3>Theme</h3><div class="row">${["auto","light","dark"].map(t=>`<button class="${S.theme==t?"btn":"ghost"}" style="width:auto;padding:10px 22px" onclick="S.theme='${t}';save();applyTheme();render()">${t[0].toUpperCase()+t.slice(1)}</button>`).join("")}</div><div class="row"><button class="ghost" onclick="out()">Logout</button></div>`;
+  }
+  $("#view").innerHTML=h;
+}
+function out(){S.user=null;save();render();mode(false)}
+function mode(r){
+  reg=r;$("#at").textContent=r?"Create your account":"Welcome back!";
+  $("#as").textContent=r?"Join My Anime Hub and start your journey.":"Login to continue your anime journey.";
+  $("#u").placeholder=r?"Username":"Email or username";
+  $("#e").hidden=!r;$("#p2").hidden=!r;$("#ab").textContent=r?"Register":"Login";$("#er").textContent="";
+  $("#sw").innerHTML=r?`Already have an account? <a onclick="mode(false)">Login</a>`:`Don't have an account? <a onclick="mode(true)">Register</a>`;
+}
+$("#af").addEventListener("submit",()=>{
+  const u=$("#u").value.trim(),p=$("#p").value;
+  if(!u||!p)return $("#er").textContent="Isi username dan password.";
+  if(reg&&p.length<6)return $("#er").textContent="Password minimal 6 karakter.";
+  if(reg&&p!==$("#p2").value)return $("#er").textContent="Konfirmasi password belum sama.";
+  S.user=u.split("@")[0];save();view="dash";render();
+});
+document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{view=b.dataset.v;render()});
+$("#q").oninput=e=>{q=e.target.value.toLowerCase();if(view=="dash"||view=="prof")view="list";render()};
+$("#th").onclick=()=>{const d=document.documentElement.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");S.theme=d=="dark"?"light":"dark";save();applyTheme();render()};
+applyTheme();mode(false);render();
+</script>
+</body>
+</html>
